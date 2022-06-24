@@ -1,5 +1,5 @@
 """ Copyright start
-  Copyright (C) 2008 - 2021 Fortinet Inc.
+  Copyright (C) 2008 - 2022 Fortinet Inc.
   All rights reserved.
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
@@ -170,7 +170,7 @@ def health_check(config):
     try:
         cw = CloudWatch(config)
         cw_client = cw._get_cloudwatch_client()
-        response = cw_client.describe_log_groups(logGroupNamePrefix='SysLog', limit=1)
+        response = cw_client.describe_log_groups()
         if response['ResponseMetadata']['HTTPStatusCode'] == 200:
             return True
     except Exception as err:

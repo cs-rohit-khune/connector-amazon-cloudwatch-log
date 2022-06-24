@@ -7,8 +7,7 @@
 from connectors.core.connector import get_logger, ConnectorError
 from datetime import datetime
 import boto3
-from .constant import *
-
+from .constants import *
 
 logger = get_logger('amazon-cloudwatch-logs')
 
@@ -16,23 +15,36 @@ logger = get_logger('amazon-cloudwatch-logs')
 class CloudWatch(object):
 
     def __init__(self, config):
+        self.config_type = config.get('config_type')
         self.aws_access_key_id = config.get('aws_access_key_id')
         self.aws_secret_access_key = config.get('aws_secret_access_key')
         self.region_name = config.get('region_name')
+        self.aws_iam_role = config.get('aws_iam_role')
 
     def _get_cloudwatch_client(self):
         try:
-            client = boto3.client(
-                'logs',
-                aws_access_key_id=self.aws_access_key_id,
-                aws_secret_access_key=self.aws_secret_access_key,
-                region_name=self.region_name
-            )
+            if self.config_type == 'Assume Role':
+                sts_client = boto3.client('sts', aws_access_key_id=self.aws_access_key_id,
+                                          aws_secret_access_key=self.aws_secret_access_key)
+                sts_response = sts_client.assume_role(RoleArn=self.aws_iam_role, RoleSessionName='CloudWatchLogs')
+                client = boto3.client(
+                    'logs',
+                    aws_access_key_id=sts_response.get('Credentials').get('AccessKeyId'),
+                    aws_secret_access_key=sts_response.get('Credentials').get('SecretAccessKey'),
+                    aws_session_token=sts_response.get('Credentials').get('SessionToken'),
+                    region_name=self.region_name
+                )
+            else:
+                client = boto3.client(
+                    'logs',
+                    aws_access_key_id=self.aws_access_key_id,
+                    aws_secret_access_key=self.aws_secret_access_key,
+                    region_name=self.region_name
+                )
             return client
         except Exception as err:
             logger.error('{}'.format(str(err)))
             raise ConnectorError(str(err))
-
 
     def _convert_to_epoch(self, date_time):
         try:
@@ -49,7 +61,9 @@ class CloudWatch(object):
                 return int(epoch_time * 1000)
         except Exception as err:
             logger.error('{}'.format(str(err)))
-            raise ConnectorError("[{}] Invalid date format. Provide date in either of '%Y-%m-%dT%H:%M:%S.%fZ' e.g ‘2020-10-11T04:30:00.000Z’ or an epoch timestamp format".format(str(err), str(date_time)))
+            raise ConnectorError(
+                "[{}] Invalid date format. Provide date in '%Y-%m-%dT%H:%M:%S.%fZ' e.g ‘2020-10-11T04:30:00.000Z’".format(
+                    str(err), str(date_time)))
 
     def _convert_csv_str_to_list(self, list_param):
         try:
@@ -62,7 +76,6 @@ class CloudWatch(object):
         except Exception as err:
             logger.error('{}'.format(str(err)))
             raise ConnectorError(str(err))
-
 
     def _build_request_payload(self, params, operation=None):
         try:
