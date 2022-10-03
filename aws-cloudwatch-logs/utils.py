@@ -127,6 +127,7 @@ def _convert_csv_str_to_list(list_param):
 
 
 def _build_request_payload(params, operation=None):
+    params.pop("assume_role")
     try:
         params_dict = {}
         for k, v in params.items():
