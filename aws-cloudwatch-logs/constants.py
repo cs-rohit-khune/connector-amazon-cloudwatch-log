@@ -4,6 +4,9 @@
   FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
   Copyright end """
 
+# AWS CloudWatch Service Name
+CLOUDWATCH_SERVICE = "logs"
+
 # Consolidated list of date-time parameters used by several operations
 DATE_PARAMS = ['startTime', 'endTime', 'fromTime', 'creationTime', 'completionTime', 'lastEventTimestamp',
                'lastIngestionTime', 'lastUpdatedTime', 'ingestionTime', 'timestamp']
