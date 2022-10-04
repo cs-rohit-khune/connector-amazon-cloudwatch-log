@@ -5,16 +5,17 @@
   Copyright end """
 
 from connectors.core.connector import get_logger, ConnectorError
-from .utils import CloudWatch
+from .utils import _get_aws_client, _build_request_payload, _get_temp_credentials
+from .constants import *
+import boto3
 
-logger = get_logger('amazon-cloudwatch-logs')
+logger = get_logger('aws-cloudwatch-logs')
 
 
 def create_log_group(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.create_log_group(**params_dict)
         return response
     except Exception as err:
@@ -24,9 +25,8 @@ def create_log_group(config, params):
 
 def create_log_stream(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.create_log_stream(**params_dict)
         return response
     except Exception as err:
@@ -36,9 +36,8 @@ def create_log_stream(config, params):
 
 def get_list_log_groups(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.describe_log_groups(**params_dict)
         return response
     except Exception as err:
@@ -48,9 +47,8 @@ def get_list_log_groups(config, params):
 
 def get_list_log_streams(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.describe_log_streams(**params_dict)
         return response
     except Exception as err:
@@ -60,9 +58,8 @@ def get_list_log_streams(config, params):
 
 def get_log_events(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.get_log_events(**params_dict)
         return response
     except Exception as err:
@@ -72,9 +69,8 @@ def get_log_events(config, params):
 
 def delete_log_group(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.delete_log_group(**params_dict)
         return response
     except Exception as err:
@@ -84,9 +80,8 @@ def delete_log_group(config, params):
 
 def delete_log_stream(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.delete_log_stream(**params_dict)
         return response
     except Exception as err:
@@ -96,9 +91,8 @@ def delete_log_stream(config, params):
 
 def create_log_retention_policy(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.put_retention_policy(**params_dict)
         return response
     except Exception as err:
@@ -108,9 +102,8 @@ def create_log_retention_policy(config, params):
 
 def delete_log_retention_policy(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.delete_retention_policy(**params_dict)
         return response
     except Exception as err:
@@ -120,9 +113,8 @@ def delete_log_retention_policy(config, params):
 
 def upload_log_event(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params, operation='upload_log_event')
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params, operation='upload_log_event')
         response = cw_client.put_log_events(**params_dict)
         return response
     except Exception as err:
@@ -132,9 +124,12 @@ def upload_log_event(config, params):
 
 def run_log_insight_query(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        log_group_names = params.get("logGroupNames")
+        if isinstance(log_group_names, list) and len(log_group_names) == 1:
+            params["logGroupName"] = log_group_names[0]
+            params.pop("logGroupNames")
+        params_dict = _build_request_payload(params)
         response = cw_client.start_query(**params_dict)
         return response
     except Exception as err:
@@ -144,9 +139,8 @@ def run_log_insight_query(config, params):
 
 def get_log_insight_query_result(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.get_query_results(**params_dict)
         return response
     except Exception as err:
@@ -156,9 +150,8 @@ def get_log_insight_query_result(config, params):
 
 def stop_log_insight_query(config, params):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        params_dict = cw._build_request_payload(params)
+        cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
+        params_dict = _build_request_payload(params)
         response = cw_client.stop_query(**params_dict)
         return response
     except Exception as err:
@@ -166,16 +159,30 @@ def stop_log_insight_query(config, params):
         raise ConnectorError(str(err))
 
 
-def health_check(config):
+def check_health(config):
     try:
-        cw = CloudWatch(config)
-        cw_client = cw._get_cloudwatch_client()
-        response = cw_client.describe_log_groups()
-        if response['ResponseMetadata']['HTTPStatusCode'] == 200:
-            return True
-    except Exception as err:
-        logger.error('{}'.format(str(err)))
-        raise ConnectorError(str(err))
+        config_type = config.get('config_type')
+        if config_type == "AWS Instance IAM Role":
+            if _get_temp_credentials(config):
+                return True
+            else:
+                logger.error('Invalid Role. Please verify is the role is associated to your instance.')
+                raise ConnectorError('Invalid Role. Please verify is the role is associated to your instance.')
+        else:
+            aws_access_key = config.get('aws_access_key')
+            aws_region = config.get('aws_region')
+            aws_secret_access_key = config.get('aws_secret_access_key')
+            client = boto3.client(CLOUDWATCH_SERVICE, region_name=aws_region, aws_access_key_id=aws_access_key,
+                                  aws_secret_access_key=aws_secret_access_key)
+            account_id = client.get_caller_identity()["Account"]
+            if account_id:
+                return True
+            else:
+                logger.error('Invalid Region name or Aws Access Key ID or Aws Secret Access Key')
+                raise ConnectorError('Invalid Region name or Aws Access Key ID or Aws Secret Access Key')
+    except Exception as Err:
+        logger.exception(Err)
+        raise ConnectorError(Err)
 
 
 operations = {
