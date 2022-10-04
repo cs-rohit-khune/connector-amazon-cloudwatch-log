@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "label": "AWS CloudWatch Logs",
   "description": "AWS CloudWatch Logs enables you to monitor, store, and access your system, application, and custom log files. This connector facilitates the automate operations related to the log group, log streams and metrics.",
-  "publisher": "Community",
-  "cs_approved": false,
+  "publisher": "Fortinet",
+  "cs_approved": true,
   "cs_compatible": true,
   "category": "AWS Services",
   "icon_small_name": "cyops_small.png",
@@ -20,7 +20,7 @@
         "type": "select",
         "name": "config_type",
         "tooltip": "AWS configuration type",
-        "description": "Type of configuration using which you will provide credentials to access AWS CloudWatch and perform automated actions. You can select betweenIAM RoleorAccess Credentials. If you selectIAM Role, then enter details in the following field(s): AWS Instance IAM Role: IAM Role of your AWS instance to access AWS services. If you selectAccess Credentials, then enter details in the following field(s): AWS Region: AWS region of your account to access the AWS CloudWatch. AWS Access Key ID: ID of the AWS Access Key to access AWS services. AWS Secret Access Key: Key of the AWS Secret Access to access AWS services.",
+        "description": "Type of configuration using which you will provide credentials to access AWS CloudWatch and perform automated actions. You can select between IAM RoleorAccess Credentials. If you selectIAM Role, then enter details in the following field(s): AWS Instance IAM Role: IAM Role of your AWS instance to access AWS services. If you selectAccess Credentials, then enter details in the following field(s): AWS Region: AWS region of your account to access the AWS CloudWatch. AWS Access Key ID: ID of the AWS Access Key to access AWS services. AWS Secret Access Key: Key of the AWS Secret Access to access AWS services.",
         "options": [
           "Access Credentials",
           "AWS Instance IAM Role"
@@ -147,8 +147,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "KMS Key ID",
@@ -158,8 +157,7 @@
           "name": "kmsKeyId",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Tags",
@@ -170,11 +168,22 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "value": "",
           "placeholder": "{\"tagName\":\"tagValue\"}"
         }
       ],
-      "output_schema": {}
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
     },
     {
       "title": "Create Log Stream",
@@ -237,8 +246,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Log Stream Name",
@@ -247,11 +255,22 @@
           "name": "logStreamName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         }
       ],
-      "output_schema": {}
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
     },
     {
       "title": "Get Log Groups List",
@@ -315,8 +334,7 @@
           "name": "logGroupNamePrefix",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Next Page Token",
@@ -325,8 +343,7 @@
           "name": "nextToken",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Limit",
@@ -335,8 +352,7 @@
           "name": "limit",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         }
       ],
       "output_schema": {
@@ -344,14 +360,22 @@
           {
             "logGroupName": "",
             "creationTime": "",
-            "retentionInDays": "",
             "metricFilterCount": "",
             "arn": "",
-            "storedBytes": "",
-            "kmsKeyId": ""
+            "storedBytes": ""
           }
         ],
-        "nextToken": ""
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
       }
     },
     {
@@ -416,8 +440,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Order By",
@@ -431,7 +454,6 @@
             "LogStreamName",
             "LastEventTime"
           ],
-          "value": "",
           "onchange": {
             "LogStreamName": [
               {
@@ -442,8 +464,7 @@
                 "name": "logStreamNamePrefix",
                 "required": false,
                 "visible": true,
-                "editable": true,
-                "value": ""
+                "editable": true
               }
             ]
           }
@@ -455,8 +476,7 @@
           "name": "nextToken",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Limit",
@@ -465,8 +485,7 @@
           "name": "limit",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         }
       ],
       "output_schema": {
@@ -474,15 +493,21 @@
           {
             "logStreamName": "",
             "creationTime": "",
-            "firstEventTimestamp": "",
-            "lastEventTimestamp": "",
-            "lastIngestionTime": "",
-            "uploadSequenceToken": "",
             "arn": "",
             "storedBytes": ""
           }
         ],
-        "nextToken": ""
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
       }
     },
     {
@@ -546,8 +571,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Log Stream Name",
@@ -556,8 +580,7 @@
           "name": "logStreamName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Start Time",
@@ -566,8 +589,7 @@
           "name": "startTime",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "End Time",
@@ -576,8 +598,7 @@
           "name": "endTime",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Next Page Token",
@@ -586,8 +607,7 @@
           "name": "nextToken",
           "required": false,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Limit",
@@ -612,15 +632,20 @@
         }
       ],
       "output_schema": {
-        "events": [
-          {
-            "message": "",
-            "timestamp": "",
-            "ingestionTime": ""
-          }
-        ],
+        "events": [],
         "nextForwardToken": "",
-        "nextBackwardToken": ""
+        "nextBackwardToken": "",
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
       }
     },
     {
@@ -684,11 +709,22 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         }
       ],
-      "output_schema": {}
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
     },
     {
       "title": "Delete Log Stream",
@@ -751,8 +787,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Log Stream Name",
@@ -761,11 +796,22 @@
           "name": "logStreamName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         }
       ],
-      "output_schema": {}
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
     },
     {
       "title": "Create Log Retention Policy",
@@ -828,8 +874,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Retention Period",
@@ -858,10 +903,22 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "value": ""
+          "value": "1 Day"
         }
       ],
-      "output_schema": {}
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
     },
     {
       "title": "Delete Log Retention Policy",
@@ -924,11 +981,22 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         }
       ],
-      "output_schema": {}
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
     },
     {
       "title": "Upload Log Event",
@@ -991,8 +1059,7 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Log Stream Name",
@@ -1001,8 +1068,7 @@
           "name": "logStreamName",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Timestamp",
@@ -1012,7 +1078,6 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "value": "",
           "tooltip": "Choose date or provide epoch timestamp in milliseconds\n e.g 1633890600807"
         },
         {
@@ -1022,8 +1087,7 @@
           "name": "message",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Sequence Token",
@@ -1033,16 +1097,23 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "value": "",
           "tooltip": "The sequence token can be obtained using 'Get Log Streams List' operation or from the previous upload call"
         }
       ],
       "output_schema": {
-        "nextSequenceToken": "",
         "rejectedLogEventsInfo": {
-          "tooNewLogEventStartIndex": "",
-          "tooOldLogEventEndIndex": "",
-          "expiredLogEventEndIndex": ""
+          "tooOldLogEventEndIndex": ""
+        },
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
         }
       }
     },
@@ -1108,7 +1179,6 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "value": "",
           "tooltip": "List of log groups in csv or list format. You can include up to 20 log groups.",
           "placeholder": "['MyLogGroup1', 'MyLogGroup2']"
         },
@@ -1119,8 +1189,7 @@
           "name": "startTime",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "End Time",
@@ -1129,8 +1198,7 @@
           "name": "endTime",
           "required": true,
           "visible": true,
-          "editable": true,
-          "value": ""
+          "editable": true
         },
         {
           "title": "Query String",
@@ -1140,7 +1208,6 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "value": "",
           "placeholder": "fields @timestamp, @message | sort @timestamp desc"
         },
         {
@@ -1151,12 +1218,22 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "value": "",
           "tooltip": "If left blank, the default is up to 1000 events."
         }
       ],
       "output_schema": {
-        "queryId": ""
+        "queryId": "",
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
       }
     },
     {
@@ -1221,25 +1298,28 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "value": "",
           "tooltip": "The ID number of the log insight query."
         }
       ],
       "output_schema": {
-        "results": [
-          [
-            {
-              "field": "",
-              "value": ""
-            }
-          ]
-        ],
+        "results": [],
         "statistics": {
           "recordsMatched": "",
           "recordsScanned": "",
           "bytesScanned": ""
         },
-        "status": ""
+        "status": "",
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
       }
     },
     {
@@ -1304,12 +1384,22 @@
           "required": true,
           "visible": true,
           "editable": true,
-          "value": "",
           "tooltip": "The ID number of the log insight query to stop."
         }
       ],
       "output_schema": {
-        "success": ""
+        "success": "",
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
       }
     }
   ]

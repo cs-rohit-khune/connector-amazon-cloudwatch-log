@@ -12,7 +12,7 @@ from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
 from datetime import datetime
 
-logger = get_logger('aws-cloudtrail')
+logger = get_logger('aws-cloudwatch-logs')
 TEMP_CRED_ENDPOINT = 'http://169.254.169.254/latest/meta-data/iam/security-credentials/{}'
 
 
@@ -34,7 +34,7 @@ def _get_temp_credentials(config):
 
 def _assume_a_role(data, params, aws_region):
     try:
-        client = boto3.client('sts', region_name=aws_region, aws_access_key_id=data.get('AccessKeyId'),
+        client = boto3.client(CLOUDWATCH_SERVICE, region_name=aws_region, aws_access_key_id=data.get('AccessKeyId'),
                               aws_secret_access_key=data.get('SecretAccessKey'),
                               aws_session_token=data.get('Token'))
         role_arn = params.get('role_arn')
@@ -127,7 +127,8 @@ def _convert_csv_str_to_list(list_param):
 
 
 def _build_request_payload(params, operation=None):
-    params.pop("assume_role")
+    if "assume_role" in params:
+        params.pop("assume_role")
     try:
         params_dict = {}
         for k, v in params.items():

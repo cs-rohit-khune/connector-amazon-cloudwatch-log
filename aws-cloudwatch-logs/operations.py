@@ -9,7 +9,7 @@ from .utils import _get_aws_client, _build_request_payload, _get_temp_credential
 from .constants import *
 import boto3
 
-logger = get_logger('amazon-cloudwatch-logs')
+logger = get_logger('aws-cloudwatch-logs')
 
 
 def create_log_group(config, params):
@@ -172,7 +172,7 @@ def check_health(config):
             aws_access_key = config.get('aws_access_key')
             aws_region = config.get('aws_region')
             aws_secret_access_key = config.get('aws_secret_access_key')
-            client = boto3.client('sts', region_name=aws_region, aws_access_key_id=aws_access_key,
+            client = boto3.client(CLOUDWATCH_SERVICE, region_name=aws_region, aws_access_key_id=aws_access_key,
                                   aws_secret_access_key=aws_secret_access_key)
             account_id = client.get_caller_identity()["Account"]
             if account_id:
