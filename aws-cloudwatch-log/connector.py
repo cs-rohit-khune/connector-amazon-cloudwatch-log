@@ -7,7 +7,7 @@
 from connectors.core.connector import get_logger, ConnectorError, Connector
 from .operations import operations, check_health
 
-logger = get_logger('aws-cloudwatch-logs')
+logger = get_logger('aws-cloudwatch-log')
 
 
 class AmazonCloudWatchLogs(Connector):

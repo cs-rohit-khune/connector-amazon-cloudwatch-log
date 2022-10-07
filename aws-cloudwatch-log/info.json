@@ -1,8 +1,8 @@
 {
-  "name": "aws-cloudwatch-logs",
+  "name": "aws-cloudwatch-log",
   "version": "1.0.0",
-  "label": "AWS CloudWatch Logs",
-  "description": "AWS CloudWatch Logs enables you to monitor, store, and access your system, application, and custom log files. This connector facilitates the automate operations related to the log group, log streams and metrics.",
+  "label": "AWS CloudWatch Log",
+  "description": "AWS CloudWatch Log enables you to monitor, store, and access your system, application, and custom log files. This connector facilitates the automate operations related to the log group, log streams and metrics.",
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,

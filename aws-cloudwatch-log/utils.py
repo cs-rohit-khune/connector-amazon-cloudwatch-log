@@ -12,7 +12,7 @@ from connectors.core.connector import get_logger, ConnectorError
 from .constants import *
 from datetime import datetime
 
-logger = get_logger('aws-cloudwatch-logs')
+logger = get_logger('aws-cloudwatch-log')
 TEMP_CRED_ENDPOINT = 'http://169.254.169.254/latest/meta-data/iam/security-credentials/{}'
 
 
