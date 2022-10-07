@@ -2,7 +2,8 @@ import importlib
 import json
 
 from .data import *
-conn_package = importlib.import_module("aws-cloudwatch-logs.operations")
+
+conn_package = importlib.import_module("aws-cloudwatch-log.operations")
 
 
 def test_create_log_stream():

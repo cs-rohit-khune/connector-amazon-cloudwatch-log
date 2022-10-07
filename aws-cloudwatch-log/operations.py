@@ -9,7 +9,7 @@ from .utils import _get_aws_client, _build_request_payload, _get_temp_credential
 from .constants import *
 import boto3
 
-logger = get_logger('aws-cloudwatch-logs')
+logger = get_logger('aws-cloudwatch-log')
 
 
 def create_log_group(config, params):
@@ -174,12 +174,9 @@ def check_health(config):
             aws_secret_access_key = config.get('aws_secret_access_key')
             client = boto3.client(CLOUDWATCH_SERVICE, region_name=aws_region, aws_access_key_id=aws_access_key,
                                   aws_secret_access_key=aws_secret_access_key)
-            account_id = client.get_caller_identity()["Account"]
-            if account_id:
-                return True
-            else:
-                logger.error('Invalid Region name or Aws Access Key ID or Aws Secret Access Key')
-                raise ConnectorError('Invalid Region name or Aws Access Key ID or Aws Secret Access Key')
+            client.describe_log_groups(limit=1)
+            return True
+
     except Exception as Err:
         logger.exception(Err)
         raise ConnectorError(Err)
