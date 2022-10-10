@@ -90,7 +90,8 @@
       "title": "Create Log Group",
       "operation": "create_log_group",
       "description": "Creates a log group with the specified name.",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "create_log_group",
       "enabled": true,
       "parameters": [
         {
@@ -189,7 +190,8 @@
       "title": "Create Log Stream",
       "operation": "create_log_stream",
       "description": "Creates a log stream for the specified log group in Amazon CloudWatch",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "create_log_stream",
       "enabled": true,
       "parameters": [
         {
@@ -276,7 +278,8 @@
       "title": "Get Log Groups List",
       "operation": "get_list_log_groups",
       "description": "Lists the specified log groups. You can list all your log groups or filter the results by prefix of log group name.",
-      "category": "utilities",
+      "category": "investigation",
+      "annotation": "get_list_log_groups",
       "enabled": true,
       "parameters": [
         {
@@ -382,7 +385,8 @@
       "title": "Get Log Streams List",
       "operation": "get_list_log_streams",
       "description": "Get lists the log streams for the specified log group. You can list all the log streams or filter the results by prefix.",
-      "category": "utilities",
+      "category": "investigation",
+      "annotation": "get_list_log_streams",
       "enabled": true,
       "parameters": [
         {
@@ -514,7 +518,8 @@
       "title": "Get Log Events",
       "operation": "get_log_events",
       "description": "Get lists log events from the specified log stream. You can list all of the log events or filter using a time range.",
-      "category": "utilities",
+      "category": "investigation",
+      "annotation": "get_log_events",
       "enabled": true,
       "parameters": [
         {
@@ -652,7 +657,8 @@
       "title": "Delete Log Group",
       "operation": "delete_log_group",
       "description": "Deletes the specified log group and permanently deletes all the archived log events associated with the log group.",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "delete_log_group",
       "enabled": true,
       "parameters": [
         {
@@ -730,7 +736,8 @@
       "title": "Delete Log Stream",
       "operation": "delete_log_stream",
       "description": "Deletes the specified log stream and permanently deletes all the archived log events associated with the log stream.",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "delete_log_stream",
       "enabled": true,
       "parameters": [
         {
@@ -817,7 +824,8 @@
       "title": "Create Log Retention Policy",
       "operation": "create_log_retention_policy",
       "description": "Sets the retention of the specified log group. A retention policy allows you to configure the number of days for which to retain log events in the specified log group.",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "create_log_retention_policy",
       "enabled": true,
       "parameters": [
         {
@@ -924,7 +932,8 @@
       "title": "Delete Log Retention Policy",
       "operation": "delete_log_retention_policy",
       "description": "Deletes the retention of the specified log group. Log events do not expire if they belong to log groups without a retention policy.",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "delete_log_retention_policy",
       "enabled": true,
       "parameters": [
         {
@@ -1002,7 +1011,8 @@
       "title": "Upload Log Event",
       "operation": "upload_log_event",
       "description": "Uploads a batch of log events to the specified log stream",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "upload_log_event",
       "enabled": true,
       "parameters": [
         {
@@ -1121,7 +1131,8 @@
       "title": "Run Log Insight Query",
       "operation": "run_log_insight_query",
       "description": "Schedules a query of a log group using CloudWatch Logs Insights for the specified log group and time range.",
-      "category": "utilities",
+      "category": "investigation",
+      "annotation": "run_log_insight_query",
       "enabled": true,
       "parameters": [
         {
@@ -1240,7 +1251,8 @@
       "title": "Get Log Insight Query Result",
       "operation": "get_log_insight_query_result",
       "description": "Returns the results from the specified query.",
-      "category": "utilities",
+      "category": "investigation",
+      "annotation": "get_log_insight_query_result",
       "enabled": true,
       "parameters": [
         {
@@ -1326,7 +1338,8 @@
       "title": "Stop Log Insight Query",
       "operation": "stop_log_insight_query",
       "description": "Stops a CloudWatch Logs Insights query that is in progress.",
-      "category": "utilities",
+      "category": "miscellaneous",
+      "annotation": "stop_log_insight_query",
       "enabled": true,
       "parameters": [
         {
