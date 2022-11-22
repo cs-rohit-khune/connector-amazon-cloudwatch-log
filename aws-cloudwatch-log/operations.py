@@ -89,7 +89,7 @@ def delete_log_stream(config, params):
         raise ConnectorError(str(err))
 
 
-def create_log_retention_policy(config, params):
+def update_log_retention_policy(config, params):
     try:
         cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
         params_dict = _build_request_payload(params)
@@ -100,7 +100,7 @@ def create_log_retention_policy(config, params):
         raise ConnectorError(str(err))
 
 
-def delete_log_retention_policy(config, params):
+def revert_log_retention_policy(config, params):
     try:
         cw_client = _get_aws_client(config, params, CLOUDWATCH_SERVICE)
         params_dict = _build_request_payload(params)
@@ -190,8 +190,8 @@ operations = {
     'get_log_events': get_log_events,
     'delete_log_group': delete_log_group,
     'delete_log_stream': delete_log_stream,
-    'create_log_retention_policy': create_log_retention_policy,
-    'delete_log_retention_policy': delete_log_retention_policy,
+    'update_log_retention_policy': update_log_retention_policy,
+    'revert_log_retention_policy': revert_log_retention_policy,
     'upload_log_event': upload_log_event,
     'run_log_insight_query': run_log_insight_query,
     'get_log_insight_query_result': get_log_insight_query_result,

@@ -2,7 +2,7 @@
   "type": "workflow_collections",
   "data": [
     {
-      "uuid": "f8433bf0-8dce-4450-a898-ac8692356b70",
+      "uuid": "03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
       "@type": "WorkflowCollection",
       "name": "Sample - AWS CloudWatch Log - 1.0.0",
       "description": "AWS CloudWatch Log enables you to monitor, store, and access your system, application, and custom log files. This connector facilitates the automate operations related to the log group, log streams and metrics.",
@@ -14,13 +14,14 @@
       "workflows": [
         {
           "@type": "Workflow",
-          "uuid": "71a7bb22-5b3e-4b1d-bf81-e445a0bfd27e",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "fd8925f7-3662-4279-a7f0-d0eb5474b11d",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Creates a log group with the specified name.",
           "name": "Create Log Group",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -28,16 +29,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/821a843f-14f8-43cb-b101-1fd6216fe5d0",
+          "triggerStep": "/api/3/workflow_steps/fb7b8b33-2f66-4fd1-b126-109cda1b90e0",
           "steps": [
             {
-              "uuid": "821a843f-14f8-43cb-b101-1fd6216fe5d0",
+              "uuid": "fb7b8b33-2f66-4fd1-b126-109cda1b90e0",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "437dd769-fc52-4ec3-851c-415fdb405d59",
+                "route": "81391f38-e56c-45ca-8525-0bef310869de",
                 "title": "AWS CloudWatch Log: Create Log Group",
                 "resources": [
                   "alerts"
@@ -57,7 +58,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "c364c9e2-647f-41d0-b031-c41f6e4ce49d",
+              "uuid": "513f2475-464a-45e7-ac6f-a9f13032f3b8",
               "@type": "WorkflowStep",
               "name": "Create Log Group",
               "description": null,
@@ -84,24 +85,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "4c25d28d-afea-4786-be74-fba57d0105cc",
+              "uuid": "1ce0b88c-9c1f-4f62-9f48-0a11f25dd67e",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Create Log Group",
-              "sourceStep": "/api/3/workflow_steps/821a843f-14f8-43cb-b101-1fd6216fe5d0",
-              "targetStep": "/api/3/workflow_steps/c364c9e2-647f-41d0-b031-c41f6e4ce49d"
+              "sourceStep": "/api/3/workflow_steps/fb7b8b33-2f66-4fd1-b126-109cda1b90e0",
+              "targetStep": "/api/3/workflow_steps/513f2475-464a-45e7-ac6f-a9f13032f3b8"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "57c17649-9fd8-4010-92d7-c3aeaab36484",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "6d5e3784-19d1-4d27-b9b7-a2ce8f107437",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Creates a log stream for the specified log group in Amazon CloudWatch",
           "name": "Create Log Stream",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -109,16 +111,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/3c64041f-e1cb-4490-a538-01186b605ff0",
+          "triggerStep": "/api/3/workflow_steps/7191fb4d-33ab-49d5-b165-e30a776f88dc",
           "steps": [
             {
-              "uuid": "3c64041f-e1cb-4490-a538-01186b605ff0",
+              "uuid": "7191fb4d-33ab-49d5-b165-e30a776f88dc",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "4b0cd5e7-da9e-4722-98e7-0ce2be88b2f9",
+                "route": "fbc62b03-63ce-40d6-b931-3e6e28c4f317",
                 "title": "AWS CloudWatch Log: Create Log Stream",
                 "resources": [
                   "alerts"
@@ -138,7 +140,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "60a71117-8dd0-4033-b882-0e7b8fcaa7d5",
+              "uuid": "a2c23d63-7e8a-4379-9656-87142a004718",
               "@type": "WorkflowStep",
               "name": "Create Log Stream",
               "description": null,
@@ -165,24 +167,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "b76cbe63-db61-4479-a0ae-78f06d12d0dd",
+              "uuid": "fc753471-d834-496d-bc11-57f2fc3d37cc",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Create Log Stream",
-              "sourceStep": "/api/3/workflow_steps/3c64041f-e1cb-4490-a538-01186b605ff0",
-              "targetStep": "/api/3/workflow_steps/60a71117-8dd0-4033-b882-0e7b8fcaa7d5"
+              "sourceStep": "/api/3/workflow_steps/7191fb4d-33ab-49d5-b165-e30a776f88dc",
+              "targetStep": "/api/3/workflow_steps/a2c23d63-7e8a-4379-9656-87142a004718"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "fdba09c4-9ced-44ab-81c5-33126baf9e7c",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "332c0ef8-1cf5-4ef7-9523-d754ac5143db",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Lists the specified log groups. You can list all your log groups or filter the results by prefix of log group name.",
           "name": "Get Log Groups List",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -190,16 +193,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/795b7637-d604-48d6-8c1e-669e93159179",
+          "triggerStep": "/api/3/workflow_steps/e2cbd193-f5cd-4269-93bc-35b6d8b22934",
           "steps": [
             {
-              "uuid": "795b7637-d604-48d6-8c1e-669e93159179",
+              "uuid": "e2cbd193-f5cd-4269-93bc-35b6d8b22934",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "e700883d-3653-4396-9913-1b9572a3ed42",
+                "route": "044e0b3e-9ca9-4e53-a5c1-3179a3fdcc59",
                 "title": "AWS CloudWatch Log: Get Log Groups List",
                 "resources": [
                   "alerts"
@@ -219,7 +222,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "227638e1-4699-4229-ba5e-f17ab9bd953e",
+              "uuid": "4f36b71a-f5e8-437a-8515-a832f333e935",
               "@type": "WorkflowStep",
               "name": "Get Log Groups List",
               "description": null,
@@ -246,24 +249,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "438e4848-995f-4528-9aae-35daf178b4c0",
+              "uuid": "96c21090-8f7d-4571-9893-a701ba3f026e",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Log Groups List",
-              "sourceStep": "/api/3/workflow_steps/795b7637-d604-48d6-8c1e-669e93159179",
-              "targetStep": "/api/3/workflow_steps/227638e1-4699-4229-ba5e-f17ab9bd953e"
+              "sourceStep": "/api/3/workflow_steps/e2cbd193-f5cd-4269-93bc-35b6d8b22934",
+              "targetStep": "/api/3/workflow_steps/4f36b71a-f5e8-437a-8515-a832f333e935"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "f128d5c4-8a5c-4e6f-9781-41dbdd71ca80",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "e0ba34e4-2523-42bd-815f-703ed0140519",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Get lists the log streams for the specified log group. You can list all the log streams or filter the results by prefix.",
           "name": "Get Log Streams List",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -271,16 +275,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/d52d2b44-ae80-4a68-a786-20f7d85cbc76",
+          "triggerStep": "/api/3/workflow_steps/77700117-0ec8-4c47-9a71-a63276a38e7f",
           "steps": [
             {
-              "uuid": "d52d2b44-ae80-4a68-a786-20f7d85cbc76",
+              "uuid": "77700117-0ec8-4c47-9a71-a63276a38e7f",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "e4ee7ffd-64bf-4b42-b37d-ca2d527c4ea2",
+                "route": "2c19dc64-8d09-48b6-a3f2-7d6d272f92dc",
                 "title": "AWS CloudWatch Log: Get Log Streams List",
                 "resources": [
                   "alerts"
@@ -300,7 +304,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "d5dea1ec-e1cb-482e-916a-73e3887f204a",
+              "uuid": "e7bd4bc9-f393-4c26-8070-26acbc87174b",
               "@type": "WorkflowStep",
               "name": "Get Log Streams List",
               "description": null,
@@ -327,24 +331,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "7698601c-a252-4212-9e3f-b0ac4b03e3a5",
+              "uuid": "1036c1e8-98d4-423d-9417-288bd73ff2d2",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Log Streams List",
-              "sourceStep": "/api/3/workflow_steps/d52d2b44-ae80-4a68-a786-20f7d85cbc76",
-              "targetStep": "/api/3/workflow_steps/d5dea1ec-e1cb-482e-916a-73e3887f204a"
+              "sourceStep": "/api/3/workflow_steps/77700117-0ec8-4c47-9a71-a63276a38e7f",
+              "targetStep": "/api/3/workflow_steps/e7bd4bc9-f393-4c26-8070-26acbc87174b"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "823b9e61-bbf4-423f-ac59-f77263672c1e",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "e0f98493-b4c6-486a-8908-2f6fe53d5faa",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Get lists log events from the specified log stream. You can list all of the log events or filter using a time range.",
           "name": "Get Log Events",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -352,16 +357,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/d67702d0-3bbc-4dd7-a3f6-c44ac1e54f2d",
+          "triggerStep": "/api/3/workflow_steps/52d1d1d5-f686-48b2-9971-8a635eb09a4c",
           "steps": [
             {
-              "uuid": "d67702d0-3bbc-4dd7-a3f6-c44ac1e54f2d",
+              "uuid": "52d1d1d5-f686-48b2-9971-8a635eb09a4c",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "686a99f0-4ea2-4073-9761-b001d95d0002",
+                "route": "caa8970e-06e1-4fad-97ab-14699068cbe8",
                 "title": "AWS CloudWatch Log: Get Log Events",
                 "resources": [
                   "alerts"
@@ -381,7 +386,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "bcff7140-a8c3-4de0-a9fb-f6e50fb3dfc2",
+              "uuid": "7569b089-8511-465e-9650-4e9eb930e990",
               "@type": "WorkflowStep",
               "name": "Get Log Events",
               "description": null,
@@ -410,24 +415,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "02ccda73-5c9b-46f6-8903-895b75b305d8",
+              "uuid": "1757572f-2cc1-4c1d-82cb-50df499ae8ca",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Log Events",
-              "sourceStep": "/api/3/workflow_steps/d67702d0-3bbc-4dd7-a3f6-c44ac1e54f2d",
-              "targetStep": "/api/3/workflow_steps/bcff7140-a8c3-4de0-a9fb-f6e50fb3dfc2"
+              "sourceStep": "/api/3/workflow_steps/52d1d1d5-f686-48b2-9971-8a635eb09a4c",
+              "targetStep": "/api/3/workflow_steps/7569b089-8511-465e-9650-4e9eb930e990"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "12fe478d-6592-483a-b65b-241b4b2f7050",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "dc8d8095-14bc-4e55-ad6a-0880600635ee",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Deletes the specified log group and permanently deletes all the archived log events associated with the log group.",
           "name": "Delete Log Group",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -435,16 +441,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/3b15245e-826d-4a26-95f6-2a0b45eed077",
+          "triggerStep": "/api/3/workflow_steps/da97c918-4bd7-4254-a29d-77ca389d1db3",
           "steps": [
             {
-              "uuid": "3b15245e-826d-4a26-95f6-2a0b45eed077",
+              "uuid": "da97c918-4bd7-4254-a29d-77ca389d1db3",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "5f38c70d-5a48-48d4-aa31-9a713aaa8e19",
+                "route": "24e5c185-2fc0-4cf8-943c-698b1aeee543",
                 "title": "AWS CloudWatch Log: Delete Log Group",
                 "resources": [
                   "alerts"
@@ -464,7 +470,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "b4e9960d-58d0-4fb2-9211-7b40d0234c1c",
+              "uuid": "42d43b9b-cd19-4b3d-a97b-d173de15992d",
               "@type": "WorkflowStep",
               "name": "Delete Log Group",
               "description": null,
@@ -491,24 +497,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "2bab4bdb-6711-4b50-ae71-53f0978ba1d5",
+              "uuid": "549def71-a7c7-4562-8cea-ca7d19da420c",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Delete Log Group",
-              "sourceStep": "/api/3/workflow_steps/3b15245e-826d-4a26-95f6-2a0b45eed077",
-              "targetStep": "/api/3/workflow_steps/b4e9960d-58d0-4fb2-9211-7b40d0234c1c"
+              "sourceStep": "/api/3/workflow_steps/da97c918-4bd7-4254-a29d-77ca389d1db3",
+              "targetStep": "/api/3/workflow_steps/42d43b9b-cd19-4b3d-a97b-d173de15992d"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "3759d62e-9c09-4f8c-b8f6-3e6a7e80e208",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "1a3742c6-a294-4bcc-a0eb-ea7f76373527",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Deletes the specified log stream and permanently deletes all the archived log events associated with the log stream.",
           "name": "Delete Log Stream",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -516,16 +523,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/dd1d4c81-076f-42f3-8342-251839229209",
+          "triggerStep": "/api/3/workflow_steps/d5c1a9b8-92c7-4029-acae-a1c9c8be9882",
           "steps": [
             {
-              "uuid": "dd1d4c81-076f-42f3-8342-251839229209",
+              "uuid": "d5c1a9b8-92c7-4029-acae-a1c9c8be9882",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "5ad58d73-cf54-4fcd-b223-b496c20ef48e",
+                "route": "f92c36eb-932c-4e77-b37b-c1324252633f",
                 "title": "AWS CloudWatch Log: Delete Log Stream",
                 "resources": [
                   "alerts"
@@ -545,7 +552,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "82cd6b55-fe40-4e61-bad5-8a932bcbaa4a",
+              "uuid": "3c21d387-896f-4ed1-821a-394dcbf7e72d",
               "@type": "WorkflowStep",
               "name": "Delete Log Stream",
               "description": null,
@@ -572,24 +579,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "817065eb-8b6a-4760-a1b8-b8f5de26f459",
+              "uuid": "04ecddfc-5297-4b95-bef4-bb42599bedd6",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Delete Log Stream",
-              "sourceStep": "/api/3/workflow_steps/dd1d4c81-076f-42f3-8342-251839229209",
-              "targetStep": "/api/3/workflow_steps/82cd6b55-fe40-4e61-bad5-8a932bcbaa4a"
+              "sourceStep": "/api/3/workflow_steps/d5c1a9b8-92c7-4029-acae-a1c9c8be9882",
+              "targetStep": "/api/3/workflow_steps/3c21d387-896f-4ed1-821a-394dcbf7e72d"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "aa7c4f16-103b-48aa-a850-6f3a7168e378",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "56b19340-dd1c-452f-99a8-e81bf9ca45c8",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Sets the retention of the specified log group. A retention policy allows you to configure the number of days for which to retain log events in the specified log group.",
-          "name": "Create Log Retention Policy",
+          "name": "Update Log Retention Policy",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -597,17 +605,17 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/e7c4a2cd-8fc4-4ae6-96b3-520cec628c38",
+          "triggerStep": "/api/3/workflow_steps/30ef5761-c964-4d30-a695-08a085f5bc13",
           "steps": [
             {
-              "uuid": "e7c4a2cd-8fc4-4ae6-96b3-520cec628c38",
+              "uuid": "30ef5761-c964-4d30-a695-08a085f5bc13",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "e21036a0-9f32-4fa8-8836-bf8cf40d9653",
-                "title": "AWS CloudWatch Log: Create Log Retention Policy",
+                "route": "ec37955c-52a0-4076-a752-00b09d2f0d9f",
+                "title": "AWS CloudWatch Log: Update Log Retention Policy",
                 "resources": [
                   "alerts"
                 ],
@@ -626,9 +634,9 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "e65c4685-5bb1-4716-bfda-12fc329f9942",
+              "uuid": "9e089f4e-a51d-42d8-9bda-0d2da850d31a",
               "@type": "WorkflowStep",
-              "name": "Create Log Retention Policy",
+              "name": "Update Log Retention Policy",
               "description": null,
               "status": null,
               "arguments": {
@@ -640,8 +648,8 @@
                 },
                 "version": "1.0.0",
                 "connector": "aws-cloudwatch-log",
-                "operation": "create_log_retention_policy",
-                "operationTitle": "Create Log Retention Policy",
+                "operation": "update_log_retention_policy",
+                "operationTitle": "Update Log Retention Policy",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -654,24 +662,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "8a08553f-8fa6-4f13-b36d-6cf3b6481755",
+              "uuid": "f59b3ac3-3175-4b8d-b26d-b8b54e9998e7",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> Create Log Retention Policy",
-              "sourceStep": "/api/3/workflow_steps/e7c4a2cd-8fc4-4ae6-96b3-520cec628c38",
-              "targetStep": "/api/3/workflow_steps/e65c4685-5bb1-4716-bfda-12fc329f9942"
+              "name": "Start-> Update Log Retention Policy",
+              "sourceStep": "/api/3/workflow_steps/30ef5761-c964-4d30-a695-08a085f5bc13",
+              "targetStep": "/api/3/workflow_steps/9e089f4e-a51d-42d8-9bda-0d2da850d31a"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "998ba873-bb9b-4c23-b19c-00a7755238fe",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "d01bbf0f-3f8a-43e6-a949-28c8a7dcc321",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
-          "description": "Deletes the retention of the specified log group. Log events do not expire if they belong to log groups without a retention policy.",
-          "name": "Delete Log Retention Policy",
+          "description": "Reverts the retention of the specified log group. Log events do not expire if they belong to log groups without a retention policy.",
+          "name": "Revert Log Retention Policy",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -679,17 +688,17 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/cf57ce8e-bda8-40b3-8778-3ec8b93b919c",
+          "triggerStep": "/api/3/workflow_steps/9e349244-93fd-428a-a563-dde6e17f9ac2",
           "steps": [
             {
-              "uuid": "cf57ce8e-bda8-40b3-8778-3ec8b93b919c",
+              "uuid": "9e349244-93fd-428a-a563-dde6e17f9ac2",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "de0e1684-87fe-4479-861f-857ad0eced7f",
-                "title": "AWS CloudWatch Log: Delete Log Retention Policy",
+                "route": "b9472a9c-b787-450c-b619-c53cac9ec7e6",
+                "title": "AWS CloudWatch Log: Revert Log Retention Policy",
                 "resources": [
                   "alerts"
                 ],
@@ -708,9 +717,9 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "7593ab49-59fa-4d08-a1d6-b5781bffa8d7",
+              "uuid": "2472cf23-7a6f-4a1d-a8a4-26eaafc182e2",
               "@type": "WorkflowStep",
-              "name": "Delete Log Retention Policy",
+              "name": "Revert Log Retention Policy",
               "description": null,
               "status": null,
               "arguments": {
@@ -721,8 +730,8 @@
                 },
                 "version": "1.0.0",
                 "connector": "aws-cloudwatch-log",
-                "operation": "delete_log_retention_policy",
-                "operationTitle": "Delete Log Retention Policy",
+                "operation": "revert_log_retention_policy",
+                "operationTitle": "Revert Log Retention Policy",
                 "step_variables": {
                   "output_data": "{{vars.result}}"
                 }
@@ -735,24 +744,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "baa2d766-19cc-4fa1-a408-565dc08f4040",
+              "uuid": "7c6be7ad-bfcb-43b9-9b9f-b53fed495e06",
               "label": null,
               "isExecuted": false,
-              "name": "Start-> Delete Log Retention Policy",
-              "sourceStep": "/api/3/workflow_steps/cf57ce8e-bda8-40b3-8778-3ec8b93b919c",
-              "targetStep": "/api/3/workflow_steps/7593ab49-59fa-4d08-a1d6-b5781bffa8d7"
+              "name": "Start-> Revert Log Retention Policy",
+              "sourceStep": "/api/3/workflow_steps/9e349244-93fd-428a-a563-dde6e17f9ac2",
+              "targetStep": "/api/3/workflow_steps/2472cf23-7a6f-4a1d-a8a4-26eaafc182e2"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "51d8dced-b094-48f9-9fe2-08b9a2d61fd0",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "a10b7c62-cd3b-444d-8d8d-0457e8b13053",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Uploads a batch of log events to the specified log stream",
           "name": "Upload Log Event",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -760,16 +770,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/41f2a1a4-870e-43b9-be75-805cb6abced0",
+          "triggerStep": "/api/3/workflow_steps/5199dfcd-0742-4a50-bf49-c056afbdad68",
           "steps": [
             {
-              "uuid": "41f2a1a4-870e-43b9-be75-805cb6abced0",
+              "uuid": "5199dfcd-0742-4a50-bf49-c056afbdad68",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "715fa346-7f5e-4ead-8204-36fb7a2ee2d5",
+                "route": "566d6423-6bd9-4df2-a9d4-afd8661fd1f0",
                 "title": "AWS CloudWatch Log: Upload Log Event",
                 "resources": [
                   "alerts"
@@ -789,7 +799,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "39c6b102-7306-400b-8383-87afafd8f623",
+              "uuid": "150a99c7-44a0-4abf-be7e-a22c8f254aaf",
               "@type": "WorkflowStep",
               "name": "Upload Log Event",
               "description": null,
@@ -816,24 +826,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "cfb4ab7b-4839-403d-b714-ab6ba4d92e4b",
+              "uuid": "a6a68cfc-bea1-4375-9218-7184d27d5435",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Upload Log Event",
-              "sourceStep": "/api/3/workflow_steps/41f2a1a4-870e-43b9-be75-805cb6abced0",
-              "targetStep": "/api/3/workflow_steps/39c6b102-7306-400b-8383-87afafd8f623"
+              "sourceStep": "/api/3/workflow_steps/5199dfcd-0742-4a50-bf49-c056afbdad68",
+              "targetStep": "/api/3/workflow_steps/150a99c7-44a0-4abf-be7e-a22c8f254aaf"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "0614d575-fb36-463b-983d-893dc24977a9",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "c4e47a70-8f7f-4a3e-a1af-e5bee66fbf52",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Schedules a query of a log group using CloudWatch Logs Insights for the specified log group and time range.",
           "name": "Run Log Insight Query",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -841,16 +852,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/58a640f6-9c53-4b6f-93e0-b4b8cac5058f",
+          "triggerStep": "/api/3/workflow_steps/adf358d1-a9cb-4bae-b6a9-d77dbe0d4ee9",
           "steps": [
             {
-              "uuid": "58a640f6-9c53-4b6f-93e0-b4b8cac5058f",
+              "uuid": "adf358d1-a9cb-4bae-b6a9-d77dbe0d4ee9",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "d0a753f3-4419-4a94-a1fa-da253d524c80",
+                "route": "471b048d-076c-4b9a-9400-4ad3e6c19cb1",
                 "title": "AWS CloudWatch Log: Run Log Insight Query",
                 "resources": [
                   "alerts"
@@ -870,7 +881,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "98baf50c-d040-4ced-ad47-92982b07823c",
+              "uuid": "4dd824f0-cdd0-4298-8d6b-50b327401bd1",
               "@type": "WorkflowStep",
               "name": "Run Log Insight Query",
               "description": null,
@@ -897,24 +908,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "5247b1cf-e1a9-43dd-9be0-d41c4adb2dfa",
+              "uuid": "264568e0-a234-4158-b665-9da63c2d9d28",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Run Log Insight Query",
-              "sourceStep": "/api/3/workflow_steps/58a640f6-9c53-4b6f-93e0-b4b8cac5058f",
-              "targetStep": "/api/3/workflow_steps/98baf50c-d040-4ced-ad47-92982b07823c"
+              "sourceStep": "/api/3/workflow_steps/adf358d1-a9cb-4bae-b6a9-d77dbe0d4ee9",
+              "targetStep": "/api/3/workflow_steps/4dd824f0-cdd0-4298-8d6b-50b327401bd1"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "a4e242a7-7e21-4a44-bf95-f0d80e640ede",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "d533a47d-9222-4ec3-b6ea-6f616c3de18d",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Returns the results from the specified query.",
           "name": "Get Log Insight Query Result",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -922,16 +934,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/ff7f033f-2569-4d1b-a086-9ab94a76d851",
+          "triggerStep": "/api/3/workflow_steps/e7559f27-0ae2-4793-bbcf-f7b67542d6bb",
           "steps": [
             {
-              "uuid": "ff7f033f-2569-4d1b-a086-9ab94a76d851",
+              "uuid": "e7559f27-0ae2-4793-bbcf-f7b67542d6bb",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "4547c6cb-8390-492f-9822-1335d16308ef",
+                "route": "3492bfbc-12d5-43a0-af0e-07e2ba53cccc",
                 "title": "AWS CloudWatch Log: Get Log Insight Query Result",
                 "resources": [
                   "alerts"
@@ -951,7 +963,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "9a7461a8-148d-4f2e-96fa-31fe55b27a76",
+              "uuid": "542c06f2-d065-4a09-bf72-eb3d349f85a2",
               "@type": "WorkflowStep",
               "name": "Get Log Insight Query Result",
               "description": null,
@@ -978,24 +990,25 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "38c70fe2-aa05-42df-a852-08b96a66bdeb",
+              "uuid": "ea50ecf5-cd35-47b1-b956-1225ddf51f03",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Get Log Insight Query Result",
-              "sourceStep": "/api/3/workflow_steps/ff7f033f-2569-4d1b-a086-9ab94a76d851",
-              "targetStep": "/api/3/workflow_steps/9a7461a8-148d-4f2e-96fa-31fe55b27a76"
+              "sourceStep": "/api/3/workflow_steps/e7559f27-0ae2-4793-bbcf-f7b67542d6bb",
+              "targetStep": "/api/3/workflow_steps/542c06f2-d065-4a09-bf72-eb3d349f85a2"
             }
           ]
         },
         {
           "@type": "Workflow",
-          "uuid": "7423f1d3-ce56-4768-94a1-e354e86957cf",
-          "collection": "/api/3/workflow_collections/f8433bf0-8dce-4450-a898-ac8692356b70",
+          "uuid": "e8b1bcc6-d34f-411d-bbed-7e84d9857c1d",
+          "collection": "/api/3/workflow_collections/03fc187f-8ca1-42de-82f2-9d8cb9103b3e",
           "triggerLimit": null,
           "description": "Stops a CloudWatch Logs Insights query that is in progress.",
           "name": "Stop Log Insight Query",
           "tag": "#AWS CloudWatch Log",
           "recordTags": [
+            "Aws",
             "aws-cloudwatch-log"
           ],
           "isActive": false,
@@ -1003,16 +1016,16 @@
           "singleRecordExecution": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/f3add605-cfe4-4a64-94f7-14892b8e3cdb",
+          "triggerStep": "/api/3/workflow_steps/8625c268-a9e6-4181-8c53-4ff7f1ff4b30",
           "steps": [
             {
-              "uuid": "f3add605-cfe4-4a64-94f7-14892b8e3cdb",
+              "uuid": "8625c268-a9e6-4181-8c53-4ff7f1ff4b30",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
               "status": null,
               "arguments": {
-                "route": "4b678e7f-0478-4b5b-9a24-e4029cf6738a",
+                "route": "bd4b6871-82e7-4c77-bc3f-19f818464d5c",
                 "title": "AWS CloudWatch Log: Stop Log Insight Query",
                 "resources": [
                   "alerts"
@@ -1032,7 +1045,7 @@
               "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
-              "uuid": "8a2cadde-8dcf-44f6-b481-8de288d4cde0",
+              "uuid": "5dc785b5-260b-4956-a3bc-d80240280183",
               "@type": "WorkflowStep",
               "name": "Stop Log Insight Query",
               "description": null,
@@ -1059,12 +1072,12 @@
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "e4e15e7a-cdb5-4e36-a46a-998618248e75",
+              "uuid": "41307797-6611-4932-bc0f-c2752d2928d0",
               "label": null,
               "isExecuted": false,
               "name": "Start-> Stop Log Insight Query",
-              "sourceStep": "/api/3/workflow_steps/f3add605-cfe4-4a64-94f7-14892b8e3cdb",
-              "targetStep": "/api/3/workflow_steps/8a2cadde-8dcf-44f6-b481-8de288d4cde0"
+              "sourceStep": "/api/3/workflow_steps/8625c268-a9e6-4181-8c53-4ff7f1ff4b30",
+              "targetStep": "/api/3/workflow_steps/5dc785b5-260b-4956-a3bc-d80240280183"
             }
           ]
         }

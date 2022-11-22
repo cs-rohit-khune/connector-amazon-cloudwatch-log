@@ -148,10 +148,11 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "tooltip": "Specify Log Group Name. Validate log group creation by navigating to 'CloudWatch > Log Groups'"
         },
         {
-          "title": "KMS Key ID",
+          "title": "KMS Key ARN",
           "description": "The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.",
           "tooltip": "The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.",
           "type": "text",
@@ -163,7 +164,7 @@
         {
           "title": "Tags",
           "description": "Provide the key-value pairs to add the tags.",
-          "tooltip": "Provide tags in key-value pairs e.g {\"CWLogs\":\"Linux\"}",
+          "tooltip": "Provide tags in key-value pairs e.g {\n\"CWLogs\":\"Linux\"\n}",
           "type": "json",
           "name": "tags",
           "required": false,
@@ -248,7 +249,8 @@
           "name": "logGroupName",
           "required": true,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "tooltip": "Specify Log Group Name."
         },
         {
           "title": "Log Stream Name",
@@ -257,7 +259,8 @@
           "name": "logStreamName",
           "required": true,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "tooltip": "Specify Log Stream Name. Validate log stream creation by navigating to 'CloudWatch > Log Groups >Log Stream'"
         }
       ],
       "output_schema": {
@@ -821,11 +824,11 @@
       }
     },
     {
-      "title": "Create Log Retention Policy",
-      "operation": "create_log_retention_policy",
+      "title": "Update Log Retention Policy",
+      "operation": "update_log_retention_policy",
       "description": "Sets the retention of the specified log group. A retention policy allows you to configure the number of days for which to retain log events in the specified log group.",
       "category": "miscellaneous",
-      "annotation": "create_log_retention_policy",
+      "annotation": "update_log_retention_policy",
       "enabled": true,
       "parameters": [
         {
@@ -929,11 +932,11 @@
       }
     },
     {
-      "title": "Delete Log Retention Policy",
-      "operation": "delete_log_retention_policy",
-      "description": "Deletes the retention of the specified log group. Log events do not expire if they belong to log groups without a retention policy.",
+      "title": "Revert Log Retention Policy",
+      "operation": "revert_log_retention_policy",
+      "description": "Reverts the retention of the specified log group. Log events do not expire if they belong to log groups without a retention policy.",
       "category": "miscellaneous",
-      "annotation": "delete_log_retention_policy",
+      "annotation": "revert_log_retention_policy",
       "enabled": true,
       "parameters": [
         {

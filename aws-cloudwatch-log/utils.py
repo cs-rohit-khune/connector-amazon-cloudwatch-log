@@ -34,7 +34,7 @@ def _get_temp_credentials(config):
 
 def _assume_a_role(data, params, aws_region):
     try:
-        client = boto3.client(CLOUDWATCH_SERVICE, region_name=aws_region, aws_access_key_id=data.get('AccessKeyId'),
+        client = boto3.client('sts', region_name=aws_region, aws_access_key_id=data.get('AccessKeyId'),
                               aws_secret_access_key=data.get('SecretAccessKey'),
                               aws_session_token=data.get('Token'))
         role_arn = params.get('role_arn')
@@ -127,20 +127,20 @@ def _convert_csv_str_to_list(list_param):
 
 
 def _build_request_payload(params, operation=None):
-    if "assume_role" in params:
-        params.pop("assume_role")
     try:
         params_dict = {}
         for k, v in params.items():
             if v or isinstance(v, bool):
-                if k in DATE_PARAMS:
+                if str(v) in RETENTION_PERIOD.keys():
+                    params_dict[k] = RETENTION_PERIOD.get(v)
+                elif k in DATE_PARAMS:
                     params_dict[k] = _convert_to_epoch(v)
                 elif k in LIST_PARAMS:
                     params_dict[k] = _convert_csv_str_to_list(v)
-                elif v in RETENTION_PERIOD.keys():
-                    params_dict[k] = RETENTION_PERIOD.get(v)
                 elif k in TOKEN_PARAMS:
                     params_dict[k] = str(v)
+                elif k in PARAMS_TO_BE_REMOVED:
+                    pass
                 else:
                     params_dict[k] = v
         if operation == 'upload_log_event':
