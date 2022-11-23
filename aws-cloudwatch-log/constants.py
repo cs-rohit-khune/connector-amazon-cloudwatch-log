@@ -38,3 +38,6 @@ LIST_PARAMS = ['logGroupNames']
 
 # Token params that can be an integer, but should always sent as string.
 TOKEN_PARAMS = ['sequenceToken', 'nextToken']
+
+# Below parameters needs to be removed before making call to AWS Cloudwatch Service
+PARAMS_TO_BE_REMOVED = ['aws_region', 'assume_role', 'session_name', 'role_arn']
