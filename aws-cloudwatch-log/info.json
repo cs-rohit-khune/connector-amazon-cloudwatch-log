@@ -9,7 +9,7 @@
   "category": "AWS Services",
   "icon_small_name": "cyops_small.png",
   "icon_large_name": "cyops_large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/aws-cloudwatch-logs/450/aws-cloudwatch-logs-v1-0-0",
   "configuration": {
     "fields": [
       {
