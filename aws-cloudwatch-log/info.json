@@ -2,7 +2,7 @@
   "name": "aws-cloudwatch-log",
   "version": "1.0.0",
   "label": "AWS CloudWatch Log",
-  "description": "AWS CloudWatch Log enables you to monitor, store, and access your system, application, and custom log files. This connector facilitates the automate operations related to the log group, log streams and metrics.",
+  "description": "AWS CloudWatch Log helps you monitor, store, and access your system, application, and custom log files. This connector facilitates the automate operations related to the log group, log streams and metrics.",
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
@@ -19,8 +19,8 @@
         "visible": true,
         "type": "select",
         "name": "config_type",
-        "tooltip": "AWS configuration type",
-        "description": "Type of configuration using which you will provide credentials to access AWS CloudWatch and perform automated actions. You can select between IAM Role or Access Credentials. If you select IAM Role, then enter details in the following field(s): AWS Instance IAM Role: IAM Role of your AWS instance to access AWS services. If you select Access Credentials, then enter details in the following field(s): AWS Region: AWS region of your account to access the AWS CloudWatch. AWS Access Key ID: ID of the AWS Access Key to access AWS services. AWS Secret Access Key: Key of the AWS Secret Access to access AWS services.",
+        "tooltip": "Select the Configuration Type from IAM Role or Access Credentials. The selected configuration type determines the type of credentials that you require to access AWS CloudWatch Log and perform automated actions.",
+        "description": "Select the Configuration Type from IAM Role or Access Credentials. The selected configuration type determines the type of credentials that you require to access AWS CloudWatch Log and perform automated actions. Enter the requested details as per the following: \n\nIAM Role \n\nAWS Instance IAM Role: Specify the IAM Role of your AWS instance that you need to access the AWS CloudWatch Log service. \n\nAccess Credentials \n\nAWS Region: Specify the AWS region of your account required to access the AWS CloudWatch service. \n\nAWS Access Key ID: Specify the AWS Access Key's ID required to access the AWS CloudWatch service. \n\nAWS Secret Access Key: Specify the AWS Secret Access Key required to access the AWS CloudWatch Log service.",
         "options": [
           "Access Credentials",
           "AWS Instance IAM Role"
@@ -34,8 +34,8 @@
               "visible": true,
               "type": "text",
               "name": "aws_iam_role",
-              "tooltip": "IAM Role Name of your AWS Instance where FortiSOAR installed, to access AWS services.",
-              "description": "IAM Role Name of your AWS Instance where FortiSOAR installed, to access AWS services."
+              "tooltip": "Specify the IAM Role of your AWS instance that you need to access the AWS CloudWatch Log service.",
+              "description": "Specify the IAM Role of your AWS instance that you need to access the AWS CloudWatch Log service."
             }
           ],
           "Access Credentials": [
@@ -47,8 +47,8 @@
               "type": "text",
               "name": "aws_region",
               "placeholder": "e.g. us-east-2",
-              "tooltip": "AWS region of your account to access the AWS CloudWatch",
-              "description": "AWS region of your account to access the AWS CloudWatch"
+              "tooltip": "Specify the AWS region of your account required to access the AWS CloudWatch service. ",
+              "description": "Specify the AWS region of your account required to access the AWS CloudWatch service. "
             },
             {
               "title": "AWS Access Key ID",
@@ -57,8 +57,8 @@
               "visible": true,
               "type": "text",
               "name": "aws_access_key",
-              "tooltip": "ID of the AWS Access Key to access AWS services",
-              "description": "ID of the AWS Access Key to access AWS services"
+              "tooltip": "Specify the AWS Access Key's ID required to access the AWS CloudWatch service.",
+              "description": "Specify the AWS Access Key's ID required to access the AWS CloudWatch service."
             },
             {
               "title": "AWS Secret Access Key",
@@ -67,15 +67,15 @@
               "visible": true,
               "type": "password",
               "name": "aws_secret_access_key",
-              "tooltip": "Key of the AWS Secret Access to access AWS services",
-              "description": "Key of the AWS Secret Access to access AWS services"
+              "tooltip": "Specify the AWS Secret Access Key required to access the AWS CloudWatch Log service.",
+              "description": "Specify the AWS Secret Access Key required to access the AWS CloudWatch Log service."
             }
           ]
         }
       },
       {
         "title": "Verify SSL",
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. \nBy default, this option is set to True.",
         "required": false,
         "editable": true,
         "visible": true,
@@ -89,7 +89,7 @@
     {
       "title": "Create Log Group",
       "operation": "create_log_group",
-      "description": "Creates a log group with the specified name. Validate log group creation at CloudWatch > Log Groups.",
+      "description": "Creates a log group based on the name you have specified. You can validate the log group creation at CloudWatch > Log Groups.",
       "category": "miscellaneous",
       "annotation": "create_log_group",
       "enabled": true,
@@ -101,8 +101,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -114,110 +114,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
-              },
-              {
-                "title": "Role ARN",
-                "type": "text",
-                "name": "role_arn",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "placeholder": "arn:aws:iam::{{account_id}}:role/{{role_name}}",
-                "tooltip": "ARN of the role that you want to assume to execute this action on AWS.",
-                "description": "ARN of the role that you want to assume to execute this action on AWS."
-              },
-              {
-                "title": "Session Name",
-                "type": "text",
-                "name": "session_name",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "tooltip": "Name of the session that will be created to execute this action on AWS.",
-                "description": "Name of the session that will be created to execute this action on AWS."
-              }
-            ]
-          }
-        },
-        {
-          "title": "Log Group Name",
-          "description": "The name of the log group.",
-          "type": "text",
-          "name": "logGroupName",
-          "required": true,
-          "visible": true,
-          "editable": true,
-          "tooltip": "Specify Log Group Name."
-        },
-        {
-          "title": "KMS Key ARN",
-          "description": "The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.",
-          "tooltip": "The Amazon Resource Name (ARN) of the Customer Managed Key(CMK) to use when encrypting log data.",
-          "type": "text",
-          "name": "kmsKeyId",
-          "required": false,
-          "visible": true,
-          "editable": true,
-          "placeholder": "arn:aws:kms:{{aws_region}}:{{account_id}}:key/{{key_id}}"
-        },
-        {
-          "title": "Tags",
-          "description": "Provide the key-value pairs to add the tags.",
-          "tooltip": "Provide tags in key-value pairs e.g {\n\"CWLogs\":\"Linux\"\n}",
-          "type": "json",
-          "name": "tags",
-          "required": false,
-          "visible": true,
-          "editable": true,
-          "placeholder": "{\"tagName\":\"tagValue\"}"
-        }
-      ],
-      "output_schema": {
-        "ResponseMetadata": {
-          "RequestId": "",
-          "HTTPStatusCode": "",
-          "HTTPHeaders": {
-            "x-amzn-requestid": "",
-            "content-type": "",
-            "content-length": "",
-            "date": ""
-          },
-          "RetryAttempts": ""
-        }
-      }
-    },
-    {
-      "title": "Create Log Stream",
-      "operation": "create_log_stream",
-      "description": "Creates a log stream for the specified log group. Validate log stream creation at CloudWatch > Log Groups > Log Streams",
-      "category": "miscellaneous",
-      "annotation": "create_log_stream",
-      "enabled": true,
-      "parameters": [
-        {
-          "title": "Assume a Role",
-          "type": "checkbox",
-          "name": "assume_role",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
-          "value": false,
-          "onchange": {
-            "true": [
-              {
-                "title": "AWS Region",
-                "required": true,
-                "editable": true,
-                "visible": true,
-                "type": "text",
-                "name": "aws_region",
-                "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -245,23 +143,127 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group.",
+          "description": "Specify a name for the log group that is being created.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "Specify Log Group Name."
+          "tooltip": "Specify a name for the log group that is being created."
+        },
+        {
+          "title": "KMS Key ARN",
+          "description": "(Optional) Specify the Amazon Resource Name (ARN) of the Customer Managed Key(CMK) to use when encrypting log data.",
+          "tooltip": "(Optional) Specify the Amazon Resource Name (ARN) of the Customer Managed Key(CMK) to use when encrypting log data.",
+          "type": "text",
+          "name": "kmsKeyId",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "placeholder": "arn:aws:kms:{{aws_region}}:{{account_id}}:key/{{key_id}}"
+        },
+        {
+          "title": "Tags",
+          "description": "(Optional) Specify the key-value pairs to add as tags.",
+          "tooltip": "(Optional) Specify the key-value pairs to add as tags. e.g {\n\"CWLogs\":\"Linux\"\n}",
+          "type": "json",
+          "name": "tags",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": {
+            "tagName": "tagValue"
+          }
+        }
+      ],
+      "output_schema": {
+        "ResponseMetadata": {
+          "RequestId": "",
+          "HTTPStatusCode": "",
+          "HTTPHeaders": {
+            "x-amzn-requestid": "",
+            "content-type": "",
+            "content-length": "",
+            "date": ""
+          },
+          "RetryAttempts": ""
+        }
+      }
+    },
+    {
+      "title": "Create Log Stream",
+      "operation": "create_log_stream",
+      "description": "Creates a log stream based on the log group and the log stream name you have specified. You can validate the log stream creation at CloudWatch > Log Groups > Log Streams.",
+      "category": "miscellaneous",
+      "annotation": "create_log_stream",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Assume a Role",
+          "type": "checkbox",
+          "name": "assume_role",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
+          "value": false,
+          "onchange": {
+            "true": [
+              {
+                "title": "AWS Region",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "type": "text",
+                "name": "aws_region",
+                "placeholder": "e.g. us-east-2",
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
+              },
+              {
+                "title": "Role ARN",
+                "type": "text",
+                "name": "role_arn",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "placeholder": "arn:aws:iam::{{account_id}}:role/{{role_name}}",
+                "tooltip": "ARN of the role that you want assume to execute this action on AWS.",
+                "description": "ARN of the role that you want assume to execute this action on AWS."
+              },
+              {
+                "title": "Session Name",
+                "type": "text",
+                "name": "session_name",
+                "required": true,
+                "editable": true,
+                "visible": true,
+                "tooltip": "Name of the session that will be created to execute this action on AWS.",
+                "description": "Name of the session that will be created to execute this action on AWS."
+              }
+            ]
+          }
+        },
+        {
+          "title": "Log Group Name",
+          "description": "Specify a name for the log group to which the created log stream belongs.",
+          "type": "text",
+          "name": "logGroupName",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a name for the log group to which the created log stream belongs."
         },
         {
           "title": "Log Stream Name",
-          "description": "The name of the log stream.",
+          "description": "Specify a name for the log stream to be created.",
           "type": "text",
           "name": "logStreamName",
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "Specify Log Stream Name."
+          "tooltip": "Specify a name for the log stream to be created."
         }
       ],
       "output_schema": {
@@ -281,7 +283,7 @@
     {
       "title": "Get Log Groups List",
       "operation": "get_list_log_groups",
-      "description": "Lists the specified log groups. You can list all your log groups or filter the results by prefix of log group name.",
+      "description": "Gets a list of the log groups based on the log group name's prefix and the number of results to display on a page. You can list all the log groups or filter the results by log group name's prefix.",
       "category": "investigation",
       "annotation": "get_list_log_groups",
       "enabled": true,
@@ -293,8 +295,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -306,8 +308,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -335,8 +337,8 @@
         },
         {
           "title": "Log Group Name Prefix",
-          "description": "The log group name prefix to match.",
-          "tooltip": "Prefix to match. e.g. For log group 'MySysLog', provide 'MySys'. If left blank, lists all the log groups",
+          "description": "(Optional) Specify a log group name prefix to list all the log group names starting with the specified prefix.",
+          "tooltip": "(Optional) Specify a log group name prefix to list all the log group names starting with the specified prefix.",
           "type": "text",
           "name": "logGroupNamePrefix",
           "required": false,
@@ -345,22 +347,24 @@
         },
         {
           "title": "Next Page Token",
-          "description": "The token for the next set of items to return.",
+          "description": "(Optional) Specify the token for the next set of items to return. If the results exceed the limit specified (default 50) then output contains the next page token as well.",
           "type": "text",
           "name": "nextToken",
           "required": false,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "tooltip": "(Optional) Specify the token for the next set of items to return. If the results exceed the limit specified (default 50) then output contains the next page token as well."
         },
         {
           "title": "Limit",
-          "description": "The maximum number of items returned. If left blank, the default is up to 50 items.",
-          "tooltip": "Page size limit. If left blank, the default is up to 50 items.",
+          "description": "(Optional) Specify the maximum number of items to return. If left blank, the default is up to 50 items.",
+          "tooltip": "(Optional) Specify the maximum number of items to return. If left blank, the default is up to 50 items.",
           "type": "integer",
           "name": "limit",
           "required": false,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "value": 50
         }
       ],
       "output_schema": {
@@ -389,7 +393,7 @@
     {
       "title": "Get Log Streams List",
       "operation": "get_list_log_streams",
-      "description": "Get lists the log streams for the specified log group. You can list all the log streams or filter the results by prefix.",
+      "description": "Gets a list of the log streams for a specified log group based on the log group name you and the list order you have specified. You can list all the log streams or filter the results log group name's prefix.",
       "category": "investigation",
       "annotation": "get_list_log_streams",
       "enabled": true,
@@ -401,8 +405,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -414,8 +418,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -443,8 +447,8 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group.",
-          "tooltip": "Specify the log group name.",
+          "description": "Specify the name of the log group.",
+          "tooltip": "Specify the name of the log group.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
@@ -454,7 +458,8 @@
         {
           "title": "Order By",
           "name": "orderBy",
-          "description": "The results to be ordered by the Log Stream Name or Event Time",
+          "description": "(Optional) Select if the results are to be ordered by the Log Stream Name or Event Time \nIf you choose LogStreamName then specify a Log Stream Name prefix to match.",
+          "tooltip": "(Optional) Select if the results are to be ordered by the Log Stream Name or Event Time \nIf you choose LogStreamName then specify a Log Stream Name prefix to match.",
           "visible": true,
           "required": false,
           "editable": true,
@@ -481,8 +486,8 @@
         },
         {
           "title": "Next Page Token",
-          "description": "The token for the next set of items to return.",
-          "tooltip": "Next Page Sequence Token",
+          "description": "(Optional) Specify the token for the next set of items to return. If the results exceed the limit specified (default 50) then output contains the next page token as well.",
+          "tooltip": "(Optional) Specify the token for the next set of items to return. If the results exceed the limit specified (default 50) then output contains the next page token as well.",
           "type": "text",
           "name": "nextToken",
           "required": false,
@@ -492,12 +497,13 @@
         {
           "title": "Limit",
           "description": "The maximum number of items returned. If left blank, the default is up to 50 items.",
-          "tooltip": "Page size limit. If left blank, the default is up to 50 items.",
+          "tooltip": "The maximum number of items returned. If left blank, the default is up to 50 items.",
           "type": "integer",
           "name": "limit",
           "required": false,
           "visible": true,
-          "editable": true
+          "editable": true,
+          "value": 50
         }
       ],
       "output_schema": {
@@ -525,7 +531,7 @@
     {
       "title": "Get Log Events",
       "operation": "get_log_events",
-      "description": "Get all the log events or logs for specific duration from the specified log stream. The log events entries are located at CloudWatch > Log Groups > Log Stream > Log Events",
+      "description": "Gets all the log events, or logs for the duration and the log stream you have specified. You can view the log event entries at CloudWatch > Log Groups > Log Stream > Log Events",
       "category": "investigation",
       "annotation": "get_log_events",
       "enabled": true,
@@ -537,8 +543,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -550,8 +556,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -579,8 +585,8 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group.",
-          "tooltip": "Specify the log group name",
+          "description": "Specify the name of the log group.",
+          "tooltip": "Specify the name of the log group.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
@@ -589,8 +595,8 @@
         },
         {
           "title": "Log Stream Name",
-          "description": "The name of the log stream.",
-          "tooltip": "Specify the log stream name",
+          "description": "Specify the name of the log stream.",
+          "tooltip": "Specify the name of the log stream.",
           "type": "text",
           "name": "logStreamName",
           "required": true,
@@ -599,7 +605,8 @@
         },
         {
           "title": "Start Time",
-          "description": "The start of the time range for which log events to be fetched.",
+          "description": "(Optional) Specify the start of the time range for which log events are to be fetched.",
+          "tooltip": "(Optional) Specify the start of the time range for which log events are to be fetched.",
           "type": "datetime",
           "name": "startTime",
           "required": false,
@@ -608,7 +615,8 @@
         },
         {
           "title": "End Time",
-          "description": "The end of the time range for which log events to be fetched.",
+          "description": "(Optional) Specify the end of the time range for which log events to be fetched.",
+          "tooltip": "(Optional) Specify the end of the time range for which log events to be fetched.",
           "type": "datetime",
           "name": "endTime",
           "required": false,
@@ -617,7 +625,8 @@
         },
         {
           "title": "Next Page Token",
-          "description": "The token for the next set of items to return.",
+          "description": "(Optional) Specify the token for the next set of items to return. If the results exceed the limit specified (default 50) then output contains the next page token as well.",
+          "tooltip": "(Optional) Specify the token for the next set of items to return. If the results exceed the limit specified (default 50) then output contains the next page token as well.",
           "type": "text",
           "name": "nextToken",
           "required": false,
@@ -626,8 +635,8 @@
         },
         {
           "title": "Limit",
-          "description": "The maximum number of log events returned.",
-          "tooltip": "Page size limit. The default is set to 10 items.",
+          "description": "(Optional) Specify the maximum number of log events that are to be listed. If not specified, the default value is 50.",
+          "tooltip": "(Optional) Specify the maximum number of log events that are to be listed. If not specified, the default value is 50.",
           "type": "integer",
           "name": "limit",
           "required": false,
@@ -637,8 +646,8 @@
         },
         {
           "title": "Oldest Logs First",
-          "description": "If the value is true, the earliest log events are returned first. If the value is false, the latest log events are returned first. The default value is false.",
-          "tooltip": "If the value is false, the latest log events are returned first. If you are using a previous nextForwardToken value as the nextToken then you must specify true.",
+          "description": "(Optional) Select the checkbox if you want the earliest log events to be returned first. By default, the box is unchecked.",
+          "tooltip": "(Optional) Select the checkbox if you want the earliest log events to be returned first. By default, the box is unchecked.",
           "type": "checkbox",
           "name": "startFromHead",
           "required": false,
@@ -667,7 +676,7 @@
     {
       "title": "Delete Log Group",
       "operation": "delete_log_group",
-      "description": "Deletes the specified log group and it's associated archived log events permanently. Validate log group removal at CloudWatch > Log Groups.",
+      "description": "Deletes a log group, and it's associated archived log events, permanently based on the log group name you have specified. You can validate the log group's removal from CloudWatch > Log Groups.",
       "category": "miscellaneous",
       "annotation": "delete_log_group",
       "enabled": true,
@@ -679,8 +688,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -692,8 +701,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -721,8 +730,8 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group is to be deleted.",
-          "tooltip": "Specify the log group name",
+          "description": "Specify the name of the log group to be deleted.",
+          "tooltip": "Specify the name of the log group to be deleted.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
@@ -747,7 +756,7 @@
     {
       "title": "Delete Log Stream",
       "operation": "delete_log_stream",
-      "description": "Deletes the specified log stream and it's associated archived log events. Validate log stream removal at CloudWatch > Log Groups > Log Streams.",
+      "description": "Deletes the log stream and it's associated archived log events based on the log group and the log stream name you have specified. Validate log stream removal at CloudWatch > Log Groups > Log Streams.",
       "category": "miscellaneous",
       "annotation": "delete_log_stream",
       "enabled": true,
@@ -759,8 +768,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -772,8 +781,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -801,8 +810,8 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group.",
-          "tooltip": "Specify the log group name",
+          "description": "Specify the name of the log group.",
+          "tooltip": "Specify the name of the log group.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
@@ -811,8 +820,8 @@
         },
         {
           "title": "Log Stream Name",
-          "description": "The name of the log stream is to be deleted.",
-          "tooltip": "Specify the log stream to be deleted.",
+          "description": "Specify the name of the log stream to be deleted.",
+          "tooltip": "Specify the name of the log stream to be deleted.",
           "type": "text",
           "name": "logStreamName",
           "required": true,
@@ -837,7 +846,7 @@
     {
       "title": "Update Log Retention Policy",
       "operation": "update_log_retention_policy",
-      "description": "Sets retention policy that allows you to configure the number of days for which to retain log events in the specified log group.",
+      "description": "Sets a retention policy that retains log events based on the log group name and the number of days to retain.",
       "category": "miscellaneous",
       "annotation": "update_log_retention_policy",
       "enabled": true,
@@ -849,8 +858,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -862,8 +871,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -891,8 +900,8 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group.",
-          "tooltip": "Specify the log group name",
+          "description": "Specify the name of the log group.",
+          "tooltip": "Specify the name of the log group.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
@@ -901,7 +910,8 @@
         },
         {
           "title": "Retention Period",
-          "description": "Time period to retain the log events in the specified log group.",
+          "description": "Specify the time period to retain the log events in the log group you have specified.",
+          "tooltip": "Specify the time period to retain the log events in the log group you have specified.",
           "name": "retentionInDays",
           "type": "select",
           "options": [
@@ -946,7 +956,7 @@
     {
       "title": "Revert Log Retention Policy",
       "operation": "revert_log_retention_policy",
-      "description": "Reverts the retention of the specified log group. Log events do not expire if they belong to log groups without a retention policy.",
+      "description": "Reverts the retention of the specified log group based on the log group name you have specified. Log events do not expire if they belong to log groups without a retention policy.",
       "category": "miscellaneous",
       "annotation": "revert_log_retention_policy",
       "enabled": true,
@@ -958,8 +968,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -971,8 +981,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -1026,7 +1036,7 @@
     {
       "title": "Upload Log Event",
       "operation": "upload_log_event",
-      "description": "Uploads a batch of log events to the specified log stream",
+      "description": "Uploads log events to the log stream based on the log's group name and the stream name specified. You can upload multiple logs by specifying a sequence ID",
       "category": "miscellaneous",
       "annotation": "upload_log_event",
       "enabled": true,
@@ -1038,8 +1048,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -1051,8 +1061,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -1080,8 +1090,8 @@
         },
         {
           "title": "Log Group Name",
-          "description": "The name of the log group.",
-          "tooltip": "Specify the log group name",
+          "description": "Specify the log group name.",
+          "tooltip": "Specify the log group name.",
           "type": "text",
           "name": "logGroupName",
           "required": true,
@@ -1090,8 +1100,8 @@
         },
         {
           "title": "Log Stream Name",
-          "description": "The name of the log stream.",
-          "tooltip": "Specify the log stream name",
+          "description": "Specify the name of the log stream.",
+          "tooltip": "Specify the name of the log stream.",
           "type": "text",
           "name": "logStreamName",
           "required": true,
@@ -1100,17 +1110,18 @@
         },
         {
           "title": "Timestamp",
-          "description": "Timestamp of log event",
+          "description": "Specify the timestamp of the log event.",
+          "tooltip": "Specify the timestamp of the log event. Choose date or provide epoch timestamp in milliseconds\n e.g 1633890600807",
           "type": "datetime",
           "name": "timestamp",
           "required": true,
           "visible": true,
-          "editable": true,
-          "tooltip": "Choose date or provide epoch timestamp in milliseconds\n e.g 1633890600807"
+          "editable": true
         },
         {
           "title": "Message",
-          "description": "Message of log event",
+          "description": "Specify a message for the log event.",
+          "tooltip": "Specify a message for the log event.",
           "type": "text",
           "name": "message",
           "required": true,
@@ -1119,13 +1130,13 @@
         },
         {
           "title": "Sequence Token",
-          "description": "The sequence token obtained from the response of the previous upload call",
+          "description": "(Optional) Specify the sequence token obtained from the response of the previous upload call.",
           "type": "text",
           "name": "sequenceToken",
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "The sequence token can be obtained using 'Get Log Streams List' operation or from the previous upload call"
+          "tooltip": "(Optional) Specify the sequence token obtained from the response of the previous upload call."
         }
       ],
       "output_schema": {
@@ -1148,7 +1159,7 @@
     {
       "title": "Run Log Insight Query",
       "operation": "run_log_insight_query",
-      "description": "Schedules a query of a log group using CloudWatch Logs Insights for the specified log group and time range.",
+      "description": "Runs a query to get log insights using CloudWatch Logs Insights based on the comma-separated log group names, time range, and the query you have specified.",
       "category": "investigation",
       "annotation": "run_log_insight_query",
       "enabled": true,
@@ -1160,8 +1171,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -1173,8 +1184,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -1202,18 +1213,19 @@
         },
         {
           "title": "Log Group Names",
-          "description": "The list of log groups to be queried.",
+          "description": "Specify the list of log groups, as comma-separated values, to be queried.",
           "type": "text",
           "name": "logGroupNames",
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "List of log groups in CSV or list format. You can include up to 20 log groups.",
+          "tooltip": "Specify the list of log groups, as comma-separated values, to be queried. You can include up to 20 log groups.",
           "placeholder": "['MyLogGroup1', 'MyLogGroup2']"
         },
         {
           "title": "Start Time",
-          "description": "The beginning of the time range to query.",
+          "description": "Specify the beginning of the time range to query.",
+          "tooltip": "Specify the beginning of the time range to query.",
           "type": "datetime",
           "name": "startTime",
           "required": true,
@@ -1222,7 +1234,8 @@
         },
         {
           "title": "End Time",
-          "description": "The end of the time range to query.",
+          "description": "Specify the end of the time range to query.",
+          "tooltip": "Specify the end of the time range to query.",
           "type": "datetime",
           "name": "endTime",
           "required": true,
@@ -1231,7 +1244,8 @@
         },
         {
           "title": "Query String",
-          "description": "The query string to be used.",
+          "description": "Specify the query string to be used as a log insight query.",
+          "tooltip": "Specify the query string to be used as a log insight query.",
           "type": "text",
           "name": "queryString",
           "required": true,
@@ -1241,13 +1255,13 @@
         },
         {
           "title": "Limit",
-          "description": "The maximum number of log events to be returned.",
+          "description": "Specify the maximum number of log events to be returned.",
           "type": "integer",
           "name": "limit",
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "Page size limit. If left blank, the default is up to 1000 events."
+          "tooltip": "Specify the maximum number of log events to be returned. The default value is 1000."
         }
       ],
       "output_schema": {
@@ -1268,7 +1282,7 @@
     {
       "title": "Get Log Insight Query Result",
       "operation": "get_log_insight_query_result",
-      "description": "Returns the results from the specified query.",
+      "description": "Gets results of a log insight query based on the query ID that you have specified.",
       "category": "investigation",
       "annotation": "get_log_insight_query_result",
       "enabled": true,
@@ -1280,8 +1294,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -1293,8 +1307,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -1322,13 +1336,13 @@
         },
         {
           "title": "Log Insight Query ID",
-          "description": "The ID number of the log insight query.",
+          "description": "Specify the ID of the log insight query.",
           "type": "text",
           "name": "queryId",
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "The log insight query ID number."
+          "tooltip": "Specify the ID of the log insight query."
         }
       ],
       "output_schema": {
@@ -1355,7 +1369,7 @@
     {
       "title": "Stop Log Insight Query",
       "operation": "stop_log_insight_query",
-      "description": "Stops a CloudWatch Logs Insights query that is in progress.",
+      "description": "Stops a CloudWatch Logs Insights query that is in progress based on the query ID you have specified.",
       "category": "miscellaneous",
       "annotation": "stop_log_insight_query",
       "enabled": true,
@@ -1367,8 +1381,8 @@
           "required": false,
           "editable": true,
           "visible": true,
-          "tooltip": "Enable to assume a role",
-          "description": "Select this option to assume a role. This parameter is required, if you have specified 'IAM Role' as the 'Configuration Type'. This parameter is optional if you have specified 'Access Credentials' as the 'Configuration Type'. If you choose'True', you must specify the following parameters: AWS Region: AWS region of your account to access the AWS Access Analyzer Role ARN: ARN of the role that you want to assume to execute this action on AWS. Session Name: Name of the session that will be created to execute this action on AWS.",
+          "tooltip": "Select this checkbox if you have specified IAM Role as the configuration type.",
+          "description": "Select this checkbox if you have specified IAM Role as the configuration type in Configuration Parameters. Enabling this option makes the following parameters mandatory: \n\nAWS Region: AWS region of your account to access the AWS CloudWatch \n\nRole ARN: ARN of the role that you want assume to execute this action on AWS. \n\nSession Name: Name of the session that will be created to execute this action on AWS. \n\nIf you have specified Access Credentials as the configuration type, then enabling this parameter is optional.",
           "value": false,
           "onchange": {
             "true": [
@@ -1380,8 +1394,8 @@
                 "type": "text",
                 "name": "aws_region",
                 "placeholder": "e.g. us-east-2",
-                "tooltip": "Your account's AWS region",
-                "description": "AWS region of your account to access the AWS Access Analyzer"
+                "tooltip": "AWS region of your account to access the AWS CloudWatch",
+                "description": "AWS region of your account to access the AWS CloudWatch"
               },
               {
                 "title": "Role ARN",
@@ -1391,8 +1405,8 @@
                 "editable": true,
                 "visible": true,
                 "placeholder": "arn:aws:iam::{{account_id}}:role/{{role_name}}",
-                "tooltip": "ARN of the role that you want to assume to execute this action on AWS.",
-                "description": "ARN of the role that you want to assume to execute this action on AWS."
+                "tooltip": "ARN of the role that you want assume to execute this action on AWS.",
+                "description": "ARN of the role that you want assume to execute this action on AWS."
               },
               {
                 "title": "Session Name",
@@ -1409,13 +1423,13 @@
         },
         {
           "title": "Log Insight Query ID",
-          "description": "The ID number of the log insight query to stop.",
+          "description": "Specify the ID of the log insight query to stop.",
           "type": "text",
           "name": "queryId",
           "required": true,
           "visible": true,
           "editable": true,
-          "tooltip": "The ID number of the log insight query to stop."
+          "tooltip": "Specify the ID of the log insight query to stop."
         }
       ],
       "output_schema": {
